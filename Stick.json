@@ -1,0 +1,8 @@
+{
+    "author":"Leviathenn",
+    "formal":"libinst",
+    "scripts":{
+        "compile":"compile:{currentDirectory}"
+    }
+    
+}
