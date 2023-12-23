@@ -8,6 +8,7 @@ const luainjs = require('lua-in-js');
 const { exit } = require("process");
 const extract = require('extract-zip')
 const path = require("path");
+const { userInfo } = require('os');
 const luaEnv = luainjs.createEnv({
     fileExists: p => fs.existsSync(p),
     loadFile: p => fs.readFileSync(p, { encoding: 'utf8' }),
@@ -17,7 +18,7 @@ var hasRanComp = false;
 const lib = {
     installLibraries: (config)=>{
         if(!hasRanComp){
-          //console.log(config.strValues)
+          console.log(config.strValues)
           if(config.strValues["requireRoot"]){
             if(isRoot()){
              
@@ -28,11 +29,12 @@ const lib = {
           }
           (async ()=>{
             try {
-              if(fs.existsSync(`/tmp/cache`)){
-                fs.rmSync(`/tmp/cache`,{recursive:true, force:true})
+  
+              if(fs.existsSync(`/home/${userInfo().username}/cache`)){
+                fs.rmSync(`/home/${userInfo().username}/weld/cache`,{recursive:true, force:true})
               }
               await extract(`${process.cwd()}/libinst.dat`, { dir: '/tmp/cache' })
-          
+              
               fs.readdirSync(`/tmp/cache`).forEach((fDir)=>{
            
                 if(!config.strValues["extractPath"]["strValues"][fDir]){
