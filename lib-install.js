@@ -18,7 +18,8 @@ var hasRanComp = false;
 const lib = {
     installLibraries: (config)=>{
         if(!hasRanComp){
-          console.log(config.strValues)
+          //console.log(config);
+          //console.log(config.strValues)
           if(config.strValues["requireRoot"]){
             if(isRoot()){
              
